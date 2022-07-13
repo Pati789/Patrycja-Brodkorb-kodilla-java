@@ -26,7 +26,7 @@ public class MovieStore {
         booksTitlesWithTranslations.put("AV", avengersTranslations);
         booksTitlesWithTranslations.put("FL", flashTranslations);
 
-        return new HashMap<>(booksTitlesWithTranslations);
+        return booksTitlesWithTranslations;
     }
 
 }
