@@ -18,10 +18,12 @@ private OrderRepository orderRepository;
         boolean isOrdered = orderService.bought(orderRequest.getCustomer(),orderRequest.getProduct(), orderRequest.getSeller());
 
         if (isOrdered) {
-            informationService.inform(orderRequest.getCustomer());
-            orderRepository.createOrder(orderRequest.getCustomer(), orderRequest.getProduct(),orderRequest.getSeller());
-            return new OrderDto(orderRequest.getCustomer(),true);
+            informationService.inform(orderRequest.getCustomer().getName(), orderRequest.getCustomer().getEmail(), orderRequest.getSeller().getUsername());
+           orderRepository.createOrder(orderRequest.getCustomer().getName(),orderRequest.getCustomer().getSurname(), orderRequest.getProduct().getProductName(),orderRequest.getSeller().getUsername());
+           //orderRepository.createOrder();
+            return new OrderDto(orderRequest.getCustomer(), true, orderRequest.getSeller());
 
         }
+        throw new RuntimeException("Is not ordered");
     }
 }

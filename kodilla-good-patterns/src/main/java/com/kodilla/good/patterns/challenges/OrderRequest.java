@@ -6,7 +6,7 @@ public class OrderRequest {
     private Customer customer;
     private Product product;
 
-    public OrderRequest(Customer customer, Product , Seller seller) {
+    public OrderRequest(Customer customer, Product product , Seller seller) {
         this.customer = customer;
         this.product = product;
         this.seller = seller;

@@ -7,7 +7,7 @@ public class OrderDto {
 
     private Seller seller;
 
-    public OrderDto(Customer customer, boolean , Seller seller) {
+    public OrderDto(Customer customer, boolean isOrdered , Seller seller) {
         this.customer = customer;
         this.isOrdered = isOrdered;
     }
