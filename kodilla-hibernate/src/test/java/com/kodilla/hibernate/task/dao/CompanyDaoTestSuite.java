@@ -106,8 +106,8 @@ class CompanyDaoTestSuite {
         List<Company>  companiesStartsWithGiven3Char = companyDao.retrieveCompanyStartsWith("sof");
 
         //Then
-        assertEquals(1, employeesWithGivenLastname);
-        assertEquals(1, companiesStartsWithGiven3Char);
+        assertEquals(1, employeesWithGivenLastname.size());
+        assertEquals(1, companiesStartsWithGiven3Char.size());
 
 
 
