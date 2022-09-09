@@ -12,5 +12,4 @@ public class Item {
     public Long getProductId() { return productId; }
 
     public double getQty() { return qty; }
-
 }

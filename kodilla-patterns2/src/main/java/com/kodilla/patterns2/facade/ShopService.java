@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class ShopService {
@@ -25,11 +22,11 @@ public class ShopService {
     public Long openOrder(Long userId) {
         if (authenticator.isAuthenticated(userId)) {
             Long maxOrder = orders.stream()
-                    .mapToLong(o->o.getOrderId())
+                    .mapToLong(o -> o.getOrderId())
                     .max()
                     .orElse(0);
             orders.add(new Order(maxOrder + 1, userId, productService));
-            return maxOrder +1;
+            return maxOrder + 1;
         } else {
             return -1L;
         }
@@ -37,18 +34,18 @@ public class ShopService {
 
     public void addItem(Long orderId, Long productId, double qty) {
         orders.stream()
-                .filter(o-> o.getOrderId().equals(orderId))
-                .forEach(o->o.getItems().add(new Item(productId, qty)));
+                .filter(o -> o.getOrderId().equals(orderId))
+                .forEach(o -> o.getItems().add(new Item(productId, qty)));
     }
 
     public boolean removeItem(Long orderId, Long productId) {
         Iterator<Order> orderIterator = orders.stream()
-                .filter(o->o.getOrderId().equals(orderId))
+                .filter(o -> o.getOrderId().equals(orderId))
                 .iterator();
         while (orderIterator.hasNext()) {
             Order theOrder = orderIterator.next();
             int orderSize = theOrder.getItems().size();
-            for (int n=0; n< theOrder.getItems().size(); n++) {
+            for (int n = 0; n < theOrder.getItems().size(); n++) {
                 if (theOrder.getItems().get(n).getProductId().equals(productId)) {
                     theOrder.getItems().remove(n);
                     return true;
@@ -68,6 +65,7 @@ public class ShopService {
         }
         return BigDecimal.ZERO;
     }
+
     public boolean doPayment(Long orderId) {
         Iterator<Order> orderIterator = orders.stream()
                 .filter(o -> o.getOrderId().equals(orderId))
@@ -84,6 +82,7 @@ public class ShopService {
         }
         return false;
     }
+
     public boolean verifyOrder(Long orderId) {
         Iterator<Order> orderIterator = orders.stream()
                 .filter(o -> o.getOrderId().equals(orderId))
@@ -99,6 +98,7 @@ public class ShopService {
         }
         return false;
     }
+
     public boolean submitOrder(Long orderId) {
         Iterator<Order> orderIterator = orders.stream()
                 .filter(o -> o.getOrderId().equals(orderId))
@@ -112,13 +112,14 @@ public class ShopService {
         }
         return false;
     }
-  public void cancelOrder(Long orderId) {
-       Iterator<Order> orderIterator = orders.stream()
+
+    public void cancelOrder(Long orderId) {
+        Iterator<Order> orderIterator = orders.stream()
                 .filter(o -> o.getOrderId().equals(orderId))
-               .iterator();
+                .iterator();
         while (orderIterator.hasNext()) {
-          Order theOrder = orderIterator.next();
-           orders.remove(theOrder);
-       }
+            Order theOrder = orderIterator.next();
+            orders.remove(theOrder);
+        }
     }
 }
