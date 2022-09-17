@@ -1,4 +1,4 @@
-package config;
+package com.kodilla.testing4.config;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

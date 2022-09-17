@@ -1,6 +1,6 @@
-package google;
+package com.kodilla.testing4.google;
 
-import config.WebDriverConfig;
+import com.kodilla.testing4.config.WebDriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
